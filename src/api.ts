@@ -9,7 +9,7 @@ import type {
   UpdateItemRes,
 } from './models/api.res';
 
-const apiUrl = 'http://192.168.0.69:3001';
+const apiUrl = '';
 
 export const getItemsForRoom = async (roomId: string): Promise<GetItemsByRoomRes> => {
   try {
