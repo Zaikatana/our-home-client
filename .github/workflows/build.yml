@@ -7,7 +7,9 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Build docker image
-        run: docker build -t our-home-client:latest .
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+        run: docker build -t our-home-client:latest --build-arg VITE_API_URL=$VITE_API_URL
       - name: Stop and remove existing container
         run: |
           docker stop our-home-client || true

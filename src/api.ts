@@ -9,9 +9,11 @@ import type {
   UpdateItemRes,
 } from './models/api.res';
 
+const apiUrl = import.meta.env.VITE_API_URL ?? '';
+
 export const getItemsForRoom = async (roomId: string): Promise<GetItemsByRoomRes> => {
   try {
-    const response = await fetch(`/api/items/room/${roomId}`);
+    const response = await fetch(`${apiUrl}/api/items/room/${roomId}`);
     if (!response.ok) {
       throw new Error('Failed to retrieve items');
     }
@@ -25,7 +27,7 @@ export const getItemsForRoom = async (roomId: string): Promise<GetItemsByRoomRes
 
 export const getItems = async (): Promise<GetItemsRes> => {
   try {
-    const response = await fetch(`/api/items/all`);
+    const response = await fetch(`${apiUrl}/api/items/all`);
     if (!response.ok) {
       throw new Error('Failed to retrieve items');
     }
@@ -39,7 +41,7 @@ export const getItems = async (): Promise<GetItemsRes> => {
 
 export const getItem = async (itemId: string): Promise<GetItemRes> => {
   try {
-    const response = await fetch(`/api/items/${itemId}`);
+    const response = await fetch(`${apiUrl}/api/items/${itemId}`);
     if (!response.ok) {
       throw new Error('Failed to retrieve item');
     }
@@ -54,7 +56,7 @@ export const getItem = async (itemId: string): Promise<GetItemRes> => {
 export const addItem = async (itemRequest: ItemFormState): Promise<AddItemRes> => {
   try {
     ItemFormState.parse(itemRequest);
-    const response = await fetch('/api/items/add', {
+    const response = await fetch('${apiUrl}/api/items/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -74,7 +76,7 @@ export const addItem = async (itemRequest: ItemFormState): Promise<AddItemRes> =
 
 export const deleteItem = async (itemId: string): Promise<void> => {
   try {
-    const response = await fetch(`/api/items/${itemId}`, { method: 'DELETE' });
+    const response = await fetch(`${apiUrl}/api/items/${itemId}`, { method: 'DELETE' });
     if (!response.ok) {
       throw new Error('Failed to delete item');
     }
@@ -88,7 +90,7 @@ export const updateItem = async (itemId: string, updateItemRequest: ItemFormStat
   try {
     ItemFormState.parse(updateItemRequest);
 
-    const response = await fetch(`/api/items/${itemId}`, {
+    const response = await fetch(`${apiUrl}/api/items/${itemId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updateItemRequest),
@@ -106,7 +108,7 @@ export const updateItem = async (itemId: string, updateItemRequest: ItemFormStat
 
 export const getRooms = async (): Promise<GetRoomsRes> => {
   try {
-    const response = await fetch('/api/rooms/all');
+    const response = await fetch(`${apiUrl}/api/rooms/all`);
     if (!response.ok) {
       throw new Error('Failed to retrieve items');
     }
@@ -120,7 +122,7 @@ export const getRooms = async (): Promise<GetRoomsRes> => {
 
 export const getCommentsForItem = async (itemId: string): Promise<GetCommentsForItemRes> => {
   try {
-    const response = await fetch(`/api/comments/item/${itemId}`);
+    const response = await fetch(`${apiUrl}/api/comments/item/${itemId}`);
     if (!response.ok) {
       throw new Error(`Failed to retrieve comments for item ${itemId}`);
     }
@@ -134,7 +136,7 @@ export const getCommentsForItem = async (itemId: string): Promise<GetCommentsFor
 
 export const deleteComment = async (commentId: string): Promise<void> => {
   try {
-    const response = await fetch(`/api/comments/${commentId}`, {
+    const response = await fetch(`${apiUrl}/api/comments/${commentId}`, {
       method: 'DELETE',
     });
     if (!response.ok) {
