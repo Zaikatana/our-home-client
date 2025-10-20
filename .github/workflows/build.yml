@@ -13,4 +13,4 @@ jobs:
           docker stop our-home-client || true
           docker rm our-home-client || true
       - name: Run new container
-        run: docker run -d -p 3000:3000 --name our-home-client our-home-client:latest
+        run: docker run -d -p 8080:8080 --name our-home-client our-home-client:latest
