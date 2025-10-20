@@ -10,6 +10,7 @@ import type {
 } from './models/api.res';
 
 const apiUrl = import.meta.env.VITE_API_URL ?? '';
+console.log('Using API URL:', apiUrl);
 
 export const getItemsForRoom = async (roomId: string): Promise<GetItemsByRoomRes> => {
   try {
