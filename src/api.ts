@@ -27,7 +27,7 @@ export const getItemsForRoom = async (roomId: string): Promise<GetItemsByRoomRes
 
 export const getItems = async (): Promise<GetItemsRes> => {
   try {
-    const response = await fetch(`${API_URL}/api/items/all/`);
+    const response = await fetch(`${API_URL}/api/items/all`);
     if (!response.ok) {
       throw new Error('Failed to retrieve items');
     }
@@ -108,7 +108,7 @@ export const updateItem = async (itemId: string, updateItemRequest: ItemFormStat
 
 export const getRooms = async (): Promise<GetRoomsRes> => {
   try {
-    const response = await fetch(`${API_URL}/api/rooms/all/`);
+    const response = await fetch(`${API_URL}/api/rooms/all`);
     if (!response.ok) {
       throw new Error('Failed to retrieve items');
     }
