@@ -14,11 +14,8 @@ jobs:
           docker stop our-home-client || true
           docker rm our-home-client || true
       - name: Run new container
-        env:
-          VITE_API_URL: ${{ secrets.API_URL }}
         run: |
           docker run -d \
             --name our-home-client \
             -p 8080:8080 \
-            -e VITE_API_URL=http://192.168.0.69:3001 \
             our-home-client:latest
