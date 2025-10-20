@@ -11,10 +11,10 @@ jobs:
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
         run: |
           echo $VITE_API_URL
-          docker build -t our-home-client:latest --build-arg VITE_API_URL=http://192.168.0.69:3001 .
+          docker build -t our-home-client:latest --build-arg VITE_API_URL=http://our-home-server:3001 .
       - name: Stop and remove existing container
         run: |
           docker stop our-home-client || true
           docker rm our-home-client || true
       - name: Run new container
-        run: docker run -d -p 8080:8080 --name our-home-client our-home-client:latest
+        run: docker run -d -p 8080:8080 --name our-home-client --network our-home-network our-home-client:latest
