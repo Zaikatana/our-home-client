@@ -18,9 +18,10 @@ jobs:
       - name: Run new container
         env:
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
-        run: docker run -d \
-          -p 8080:8080 \
-          --name our-home-client \
-          --network our-home-network \
-          -e VITE_API_URL=$VITE_API_URL \
-          our-home-client:latest
+        run: |
+          docker run -d \
+            --name our-home-client \
+            --network our-home-network \
+            -p 8080:8080 \
+            -e VITE_API_URL=$VITE_API_URL \
+            our-home-client:latest
