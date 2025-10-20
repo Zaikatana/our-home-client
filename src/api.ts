@@ -11,6 +11,8 @@ import type {
 
 const API_URL = 'http://192.168.0.69:3001';
 console.log(import.meta.env.VITE_API_URL);
+console.log(process.env.VITE_API_URL);
+console.log(import.meta.env);
 
 export const getItemsForRoom = async (roomId: string): Promise<GetItemsByRoomRes> => {
   try {
