@@ -9,8 +9,7 @@ import type {
   UpdateItemRes,
 } from './models/api.res';
 
-const apiUrl = import.meta.env.VITE_API_URL ?? '';
-console.log('Using API URL:', apiUrl);
+const apiUrl = 'http://192.168.0.69:3001';
 
 export const getItemsForRoom = async (roomId: string): Promise<GetItemsByRoomRes> => {
   try {
